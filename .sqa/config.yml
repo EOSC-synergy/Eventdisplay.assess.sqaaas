@@ -1,0 +1,52 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.9
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/Eventdisplay/Eventdisplay:
+      branch: main
+      repo: https://github.com/Eventdisplay/Eventdisplay
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/Eventdisplay/Eventdisplay git:
+        commands:
+        - /usr/bin/env sh .sqa/script.dorky-tangerine-mastiff.sh
+        container: qc.acc_paltry-carmine-sheepdog
+  QC.Doc:
+    repos:
+      github.com/Eventdisplay/Eventdisplay find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.clammy-vermilion-impala.sh
+        container: qc.doc_smelly-chocolate-hornet
+      github.com/Eventdisplay/Eventdisplay git:
+        commands:
+        - /usr/bin/env sh .sqa/script.gamy-harlequin-cockroach.sh
+        container: qc.doc_bumpy-wisteria-cassowary
+      github.com/Eventdisplay/Eventdisplay markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.crappy-turquoise-mastiff.sh
+        container: qc.doc_sunny-lemon-woodlouse
+  QC.Lic:
+    repos:
+      github.com/Eventdisplay/Eventdisplay licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.lanky-harlequin-ocelot.sh
+        container: qc.lic_crabby-crimson-hyena
+  QC.Met:
+    repos:
+      github.com/Eventdisplay/Eventdisplay cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.stuffy-amber-quokka.sh
+        container: qc.met_wimpy-azure-koala
+  QC.Ver:
+    repos:
+      github.com/Eventdisplay/Eventdisplay get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.sickly-cinnabar-bombay.sh
+        container: qc.ver_skimpy-blue-insect
+timeout: 5400
